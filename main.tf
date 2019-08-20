@@ -1,7 +1,7 @@
 resource "ibm_compute_vm_instance" "edu" {
   domain                     = "inppyyoo.net"
   datacenter                 = "seo01"
-  hostname                   = "edu.${count.index}"
+  hostname                   = "edu-${count.index}"
   count                      = "${var.vm_count}"
   os_reference_code          = "WIN_LATEST_64"
   flavor_key_name            = "BL2_2X4X100"
