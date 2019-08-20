@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+PROGRAM_USER = $(whoami)
+
+function slack_message(){
+    # $1 : message
+    # $2 : true=good, false=danger
+
+    COLOR="danger"
+    if $2 ; then
+        COLOR="good"
+    fi
+    curl -s -d 'payload={"attachments": [
+        {
+            "fallback": "Required plain-text summary of the attachment.",
+            "color": "#36a64f",
+            "pretext": "서버 계정 정보",
+            "author_name": '"$HOSTNAME"',
+            "title": "Server Credential",
+            "text": "User : $PROGRAM_USER\n Password : ",
+            "fields": [
+                {
+                    "title": "Priority",
+                    "value": "High",
+                    "short": false
+                }
+            ],
+            "footer": "Slack API",
+            "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+        }
+    ]}' https://hooks.slack.com/services/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
+}
