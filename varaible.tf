@@ -1,4 +1,4 @@
 variable "vm_count" {
   type = "string"
-  default = "6"
+  default = "2"
 }
