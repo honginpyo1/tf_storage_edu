@@ -7,7 +7,7 @@ resource "ibm_dns_record" "win_cname" {
     domain_id = "${data.ibm_dns_domain.main.id}"
     host = "${element(ibm_compute_vm_instance.edu.*.hostname, count.index)}"
     ttl = 300
-    type = "cname"
+    type = "a"
     count = "${var.vm_count}"
 }
 
@@ -16,5 +16,5 @@ resource "ibm_dns_record" "linux_cname" {
     domain_id = "${data.ibm_dns_domain.main.id}"
     host = "${ibm_compute_vm_instance.perf.hostname}"
     ttl = 300
-    type = "cname"
+    type = "a"
 }
